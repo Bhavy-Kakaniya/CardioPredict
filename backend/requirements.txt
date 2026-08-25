@@ -1,6 +1,10 @@
-fastapi>=0.110.0
-uvicorn>=0.28.0
-pydantic>=2.6.0
-scikit-learn>=1.4.0
-pandas>=2.0.0
-numpy>=1.24.0
+fastapi==0.141.1
+uvicorn==0.52.3
+gunicorn==23.0.0
+pydantic==2.13.4
+scikit-learn==1.9.0
+pandas==3.0.2
+numpy==2.4.4
+starlette==1.6.0
+anyio==4.11.0
+httpx==0.28.1

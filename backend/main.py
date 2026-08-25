@@ -92,10 +92,18 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# Enable CORS for all frontends
+# Enable CORS — origins are configured via the ALLOWED_ORIGINS env var
+# (comma-separated list, e.g. "https://cardiopredict.vercel.app,http://localhost:5173")
+# Falls back to localhost only in development.
+_raw_origins = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000"
+)
+ALLOWED_ORIGINS: List[str] = [o.strip() for o in _raw_origins.split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
